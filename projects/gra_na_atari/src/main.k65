@@ -2,7 +2,7 @@
 var screen = 0x9000;
 var frame;
 
-data fonts1 { address 0x5000 image "data/font" 0 0 8> 8v		tiles 8 0 31 }
+data fonts1 { address 0x5000 image "data/font" 0 0 8> 8v		tiles 8 0 31 } // 8> znaczy 8 w prawo, 8v znaczy 8 w dół przesuwaj się o 8 0 pikseli 31 razy
 data fonts2 { address 0x5100 image "data/font" 0 8 8> 8v		tiles 8 0 31 }
 data fonts3 { address 0x5200 image "data/font" 0 16 8> 8v		tiles 8 0 31 }
 data fonts4 { address 0x5300 image "data/font" 0 24 8> 8v		tiles 8 0 31 }
@@ -17,12 +17,6 @@ data displist {
 	0x41 &<displist &>displist
 }
 
-func nmi_fn {
-	//a!!
-	//a??
-	//return_i
-}
-
 main {
 	// disable OS
 	NMIEN=a=0
@@ -31,14 +25,14 @@ main {
 	PORTB=a=0xFE
 	s=x=0xFF
 
-	COLBK =a=0xBA
+	COLBK=a=0x00 // kolor ramki
 	//COLPF0=a=0x02
-	COLPF1=a=0x08
-	COLPF2=a=0x00
+	COLPF1=a=0x08 // kolor tła znaku
+	COLPF2=a=0x00 // kolor znaku
 	//COLPF3=a=0xEF
 	PRIOR=a=0x00
-	DLISTL=a=&<displist
-	DLISTH=a=&>displist
+	DLISTL=a=&<displist // ustawienie diplay listy
+	DLISTH=a=&>displist // ustawienie diplay listy
 	DMACTL=a=0x22
 	a=&>fonts4
 	a=&>fonts3
@@ -52,7 +46,7 @@ main {
 	x=0 { a=x a>> screen+768,x=a x++ }!=
 
 	{
-		{ a=VCOUNT }!=
+		{ a=VCOUNT }!= // synchronizacja ramki, raz na 50 Hz (PAL)
 		//frame++
 		//a=frame a<< a<< c- a+frame a<<
 		//cursor=a=frame
