@@ -1,0 +1,3 @@
+projects/*/build/*
+!projects/*build/.gitkeep
+k65.conf.input
