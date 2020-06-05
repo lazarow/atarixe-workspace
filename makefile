@@ -1,4 +1,3 @@
-# Ścieżka do folderu z emulatorem Altirra
 ALTIRRA_ARCHITECTURE?=32
 ifeq ($(ALTIRRA_ARCHITECTURE), 32)
 	ALTIRRA=${ALTIRRA_PATH}\Altirra.exe
@@ -6,10 +5,8 @@ else
 	ALTIRRA=${ALTIRRA_PATH}\Altirra64.exe
 endif
 
-# Ścieżka do SDK K65
 K65=${K65_PATH}\k65.exe
 
-# Nazwa projektu który chcemy zbudować i uruchomić, piszemy: make target PROJECT=jakis_projekt
 PROJECT?=null_project
 
 .SILENT: default clear create build run
