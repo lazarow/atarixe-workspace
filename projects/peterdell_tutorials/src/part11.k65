@@ -1,0 +1,35 @@
+
+data screen {
+	for x=1..960 eval [0x01]
+}
+
+data displaylist {
+	nocross
+	0x70 0x70 0x70 // blank lines 3x8 scan lines
+	0x42 &<screen &>screen // alt. 0x00 0xE0
+	0x43 &<screen &>screen
+	0x44 &<screen &>screen
+	0x45 &<screen &>screen
+	0x46 &<screen &>screen
+	0x47 &<screen &>screen
+	0x48 &<screen &>screen
+	0x49 &<screen &>screen
+	0x4A &<screen &>screen
+	0x4B &<screen &>screen
+	0x4C &<screen &>screen
+	0x4D &<screen &>screen
+	0x4E &<screen &>screen
+	0x4F &<screen &>screen
+	//for x=2..24 eval [0x02] // 23 times
+	0x41 &<displaylist &>displaylist // wait VBL, jump DL
+}
+
+var DLISTL= 0x0230;
+var DLISTH;
+
+main {
+	DLISTL=a=&<displaylist
+	DLISTH=a=&>displaylist
+	{
+	} always
+}

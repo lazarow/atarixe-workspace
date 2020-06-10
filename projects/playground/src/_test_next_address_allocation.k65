@@ -1,0 +1,7 @@
+var ADDR2;
+
+main {
+	ADDR1=a=0x01
+	ADDR2=a=0x01
+	{} always
+}

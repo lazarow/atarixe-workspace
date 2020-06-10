@@ -37,4 +37,5 @@ make clear PROJECT=abc
 make create PROJECT=abc
 make build PROJECT=abc
 make run PROJECT=abc
+make debug PROJECT=abc
 ```

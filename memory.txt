@@ -2,6 +2,8 @@
 
 Bazuję na tym materiale: https://www.youtube.com/watch?v=KIl4SgV0vJY i jego kontynuacji.
 
+Fajne opracowanie po polsku here: http://atariki.krap.pl/index.php/Mapa_pami%C4%99ci
+
 [MAPA PAMIĘCI]
 
 $00-$7f         zero page for OS (base page, coz you need only 1 byte for accessing to it)

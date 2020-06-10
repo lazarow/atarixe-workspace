@@ -1,3 +1,4 @@
 projects/*/build/*
 !projects/*build/.gitkeep
 k65.conf.input
+test_raw.sym

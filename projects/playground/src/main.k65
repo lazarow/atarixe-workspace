@@ -1,31 +1,3 @@
-/*
-`main` ustawia miejce w pamięci, np. $4000 i wstawia tam instrukcje JMP ($4C) która skacze do `zaalokowanego` miejsca pamięci z programem (tu pętla nieskończona).
-Pętla zostanie umieszczona na dostępnej pamięci (o to dba linker) np. $4003 (zjedzone 3 bajty na skok `main`-a),
-pętla dostaje automatyczną etykietę (można zobaczyć w pliku .sym), np. __label_1 i oczywiście pętla to kolejny JPM.
-
-Plik wykonywalny XEX wygląda np. tak:
-FF FF 00 40 05 40 4C 03 40 4C 03 40 E0 02 E2 02 00 40
-FF FF <- ładuj do pamięci
-00 40 <- ładuj pamięci od $4000
-05 40 <- ładuj pamięci do $4005 (6 bajtów)
-4C 03 40 4C 03 40 <- wgrywane 6 bajtów, to są dwa skoki na adres $4003 (pierwszy to `main`, drugi to nieskończona pętla)
-E0 02 <- ładuj pamięci od $02E0
-E2 02 <- ładuj pamięci do $02E2 (3 bajty, wektor dla DOS-a gdzie ma wystarować)
-00 40 <- dane, ale to tylko dwa bajty i przy okazji adres startu programu
-*/
-
-var SAVMSC = 0x58;
-var CHARS = 0xE000;
-
 main {
-	//y=0
-	a=0x18
-	CHARS=a
-	/*(SAVMSC),y=a
-	{
-		a=y
-		(SAVMSC),y=a
-		y++
-	}>=0*/
 	{} always
 }
