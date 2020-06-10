@@ -33,9 +33,18 @@ W każdej komendzie należy podać zmienną `PROJECT` zawierającą nazwę folde
 
 ```
 make PROJECT=abc
-make clear PROJECT=abc
-make create PROJECT=abc
-make build PROJECT=abc
-make run PROJECT=abc
-make debug PROJECT=abc
+make clear PROJECT=abc      // czyści katalog `build` projektu
+make create PROJECT=abc     // tworzy podfolder dla projektu z prostą strukturą
+make build PROJECT=abc      // buduje projekt przy pomocy K65
+make run PROJECT=abc        // uruchamia projekt na Altirra-rze
+make debug PROJECT=abc      // uruchamia projekt na Altirra-rze z włączonym DEBUG-iem na start
 ```
+
+## Projekt
+
+Źródła programu umieszczamy w folderze `src` w katalogu projektu (acz oczywiście nie ma to większego znaczenia). Ważnym elementem jest plik `files.lst`, który zawiera
+listę plików do _składania_ przez K65 (ten format wynika bezpośrednio z K65 i jest następujący: `{relatywna ścieżka do pliku} {bank pamięci}`, np. `src/main.k65 main`). Plik jest ważny, ponieważ stworzony przeze mnie `makefile` wykorzystuje go do stworzenia **pełnej** konfiguracji dla K65 (zobacz _target_ _build_ w pliku `makefile`).
+
+## Założenia
+
+K65 jest ustawiony pod tłumaczenie na system AtariXL bez OS-a, a program zaczyna się od `0x2000`. 
