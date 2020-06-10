@@ -40,7 +40,7 @@ build: clear
 	mkdir projects/${PROJECT}/build
 	echo "-system AtariXL" > projects/${PROJECT}/k65.conf.input
 	echo "-noOS" >> projects/${PROJECT}/k65.conf.input
-	echo "-lowAddr 0x4000" >> projects/${PROJECT}/k65.conf.input
+	echo "-lowAddr 0x2000" >> projects/${PROJECT}/k65.conf.input
 	cat projects/${PROJECT}/files.lst >> projects/${PROJECT}/k65.conf.input
 	echo "" >> projects/${PROJECT}/k65.conf.input
 	echo "-o projects/${PROJECT}/build/release.xex" >> projects/${PROJECT}/k65.conf.input
@@ -54,7 +54,14 @@ build: clear
 
 run: build
 	echo "[Make ScriPt:] Running Altirra..."
-	$(ALTIRRA) projects\${PROJECT}\build\release.xex
+	$(ALTIRRA) /nodebugbrkrun projects\${PROJECT}\build\release.xex
 	echo "----------------------------"
 	echo "[Make ScriPt:] Done running!"
+	echo "----------------------------"
+
+debug: build
+	echo "[Make ScriPt:] Running Altirra..."
+	$(ALTIRRA) /debug /debugbrkrun projects\${PROJECT}\build\release.xex
+	echo "----------------------------"
+	echo "[Make ScriPt:] Done running with debugging!"
 	echo "----------------------------"

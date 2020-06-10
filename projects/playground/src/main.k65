@@ -15,13 +15,17 @@ E2 02 <- ładuj pamięci do $02E2 (3 bajty, wektor dla DOS-a gdzie ma wystarowa�
 */
 
 var SAVMSC = 0x58;
+var CHARS = 0xE000;
 
 main {
-	y=0
+	//y=0
+	a=0x18
+	CHARS=a
+	/*(SAVMSC),y=a
 	{
 		a=y
 		(SAVMSC),y=a
 		y++
-	}>=0
+	}>=0*/
 	{} always
 }
