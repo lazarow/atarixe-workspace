@@ -29,8 +29,9 @@ create:
 	mkdir projects/${PROJECT}
 	mkdir projects/${PROJECT}/build
 	mkdir projects/${PROJECT}/src
+	touch projects/${PROJECT}/src/.gitkeep
 	touch projects/${PROJECT}/build/.gitkeep
-	touch projects/${PROJECT}/k65.conf
+	touch projects/${PROJECT}/files.lst
 	echo "-----------------------------"
 	echo "[Make ScriPt:] Done creating!"
 	echo "-----------------------------"
