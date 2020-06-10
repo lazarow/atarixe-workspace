@@ -7,6 +7,8 @@ data fonts2 { address 0x5100 image "data/font" 0 8 8> 8v		tiles 8 0 31 }
 data fonts3 { address 0x5200 image "data/font" 0 16 8> 8v		tiles 8 0 31 }
 data fonts4 { address 0x5300 image "data/font" 0 24 8> 8v		tiles 8 0 31 }
 
+data player { image "data/player" 0 0 8> 18v }
+
 data displist {
 	nocross	
 	0x70
@@ -40,6 +42,7 @@ main {
 	CHBASE=a=&>fonts1
 	NMIEN=a=0x80
 
+	// x (rejestr) służy do przesuwania
 	x=0 { a=x a>> screen,x=a x++ }!=
 	x=0 { a=x a>> screen+256,x=a x++ }!=
 	x=0 { a=x a>> screen+512,x=a x++ }!=
