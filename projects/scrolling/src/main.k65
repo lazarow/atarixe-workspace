@@ -1,0 +1,15 @@
+var WSYNC = 0xD40A
+var VCOUNT = 0xD40B
+
+main
+{
+	init_displaylist
+	test_draw_init
+	{
+		{ a=WSYNC a=VCOUNT } !=
+		test_draw
+		gamescreen=a=playerX
+		y=1
+		gamescreen,y=a=playerY
+	} always
+}

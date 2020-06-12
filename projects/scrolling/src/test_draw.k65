@@ -1,0 +1,25 @@
+var PORTA = 0xD300
+
+var regionX = 0x80, regionY, playerX, playerY, playerSpeed, moveDelay;
+
+inline test_draw_init
+{
+	regionX=a=128
+	regionY=a=128
+	playerX=a=80
+	playerY=a=40
+	playerSpeed=a=200
+	moveDelay=a=0
+}
+
+inline test_draw
+{
+	a=moveDelay a?0 == {
+		a=PORTA a&0b00000001 == { playerY++ moveDelay=a=playerSpeed }
+		a=PORTA a&0b00000010 == { playerY-- moveDelay=a=playerSpeed }
+		a=PORTA a&0b00000100 == { playerX++ moveDelay=a=playerSpeed }
+		a=PORTA a&0b00001000 == { playerX-- moveDelay=a=playerSpeed }
+	} else {
+		moveDelay--
+	}
+}

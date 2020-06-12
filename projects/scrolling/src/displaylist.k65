@@ -1,0 +1,47 @@
+// stałe dla ekranu
+[
+	SCREENWIDTH=160,
+	SCREENHEIGHT=80,
+	SCREENSIZE=SCREENWIDTH/4*SCREENHEIGHT
+]
+
+// pamięć ekranu gry
+data gamescreen
+{
+	for x=0..[SCREENSIZE-1] eval [0x55]
+}
+
+// DL
+data displaylist
+{
+	nocross
+	0x70 0x70 0x70
+	0b01001101 &<gamescreen &>gamescreen
+	for x=1..[SCREENHEIGHT-1] eval [0x0D]
+	0x41 &<displaylist &>displaylist
+}
+
+// adresy rejestrów DL
+var DLISTL = 0x0230
+var DLISTH = 0x0231
+var DMACTL = 0xD400
+
+// kolory (wszystkie rejestry to rejestry cienie)
+var COLPF0S = 0x02C4
+var COLPF1S = 0x02C5
+var COLPF2S = 0x02C6
+var COLPF3S = 0x02C7
+var COLBKS = 0x02C8
+
+inline init_displaylist
+{
+    DMACTL=a=0
+	DLISTL=a=&<displaylist
+	DLISTH=a=&>displaylist
+	COLPF0S=a=0x1D
+	COLPF1S=a=0x1E
+	COLPF2S=a=0x16
+    COLPF3S=a=0x00
+	COLBKS=a=0x14
+	DMACTL=a=0b00101010
+}
