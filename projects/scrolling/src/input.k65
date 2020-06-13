@@ -1,0 +1,25 @@
+var PORTA = 0xD300
+
+var regionX = 0x80, regionY, playerX, playerY, playerSpeed, movementDelay
+
+inline init_input
+{
+	regionX=a=128
+	regionY=a=128
+	playerX=a=80
+	playerY=a=40
+	playerSpeed=a=50
+	movementDelay=a=0
+}
+
+inline input
+{
+	a=movementDelay a?0 == {
+		a=PORTA a&0b00000001 == { playerY++ movementDelay=a=playerSpeed }
+		a=PORTA a&0b00000010 == { playerY-- movementDelay=a=playerSpeed }
+		a=PORTA a&0b00000100 == { playerX++ movementDelay=a=playerSpeed }
+		a=PORTA a&0b00001000 == { playerX-- movementDelay=a=playerSpeed }
+	} else {
+		movementDelay--
+	}
+}

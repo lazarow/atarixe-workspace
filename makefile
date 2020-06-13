@@ -39,7 +39,6 @@ create:
 build: clear
 	mkdir projects/${PROJECT}/build
 	echo "-system AtariXL" > projects/${PROJECT}/k65.conf.input
-	echo "-noOS" >> projects/${PROJECT}/k65.conf.input
 	echo "-lowAddr 0x2000" >> projects/${PROJECT}/k65.conf.input
 	cat projects/${PROJECT}/files.lst >> projects/${PROJECT}/k65.conf.input
 	echo "" >> projects/${PROJECT}/k65.conf.input

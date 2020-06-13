@@ -1,13 +1,12 @@
-var WSYNC = 0xD40A
-var VCOUNT = 0xD40B
+var VSYNC = 0x14
 
 main
 {
 	init_displaylist
-	test_draw_init
+	init_input
 	{
-		{ a=WSYNC a=VCOUNT } !=
-		test_draw
+		a=VSYNC { a?VSYNC } ==
+		input
 		gamescreen=a=playerX
 		y=1
 		gamescreen,y=a=playerY
