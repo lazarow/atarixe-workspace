@@ -24,6 +24,7 @@ $000001
  "."* // odwrócenie znaku
 */
 
+
 		org $2000
 start	lda #0
 		sta 559
@@ -42,14 +43,14 @@ etykieta2?		lda #'A' \ sta 0x3003 ;wb:$3003
 		lda #"A" + 16 \ sta 0x3006 ;wb:$3006
 
 // etykiety anonimowe
-//@		lda #2 ;bp
+//@		lda #2
 //		jmp @+1
 //		lda #1
 //@		nop
 //		jmp @-1
 //@		nop
 //nazwa2=12 // można ręcznie przypisać adres do etykiety
-//		jmp nazwa2 ;bp
+//		jmp nazwa2
 
 // etykiety dzielimy na lokalne (w .MACRO, procedury .PROC czy obszaru lokalnego .LOCAL) i globalne (główny blok programu)
 // .DEF :label [= expression] <- pominięcie lokalności
@@ -61,3 +62,7 @@ etykieta2?		lda #'A' \ sta 0x3003 ;wb:$3003
 		loop
 		lda:cmp:req 20 // lda 20 \ cmp 20 \ req 20 <- łączenie mnemoników, czyli mnemonik:mnemonik {argumenty}
 		run start
+
+.array	tab [5]  .byte = 0x01
+		[2]=0xFF
+		.end
