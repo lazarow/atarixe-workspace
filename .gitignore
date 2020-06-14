@@ -1,0 +1,4 @@
+projects/*/*.lab
+projects/*/*.lst
+projects/*/*.xex
+projects/*/*.atdbg
