@@ -14,7 +14,9 @@ default:
 	echo "-------------------------------------------------------"
 
 clear:
-	rm -f projects/${PROJECT}/__unformatted_breakpoints
+	rm -f projects/${PROJECT}/__unformatted_bytes2watch
+	rm -f projects/${PROJECT}/__bytes2watch
+	rm -f projects/${PROJECT}/__breakpoints
 	rm -f projects/${PROJECT}/__breakpoints
 	rm -f projects/${PROJECT}/main.atdbg
 	rm -f projects/${PROJECT}/main.lab

@@ -20,7 +20,8 @@ Zmienne środowiskowe do uzupełnienia to:
 
 ## Struktura
 
-Katalog `projects` zawiera źródła oraz pliki projektów.
+Katalog `projects` zawiera źródła oraz pliki projektów. W katalogu projektu **musi** znaleźć się główny plik `main.asm`. Dodatkowe pliku _.asm_ projektu można umieścić 
+bezpośrednio w katalogu projektu jak również w podfolderze _src_.
 
 ## Komendy
 
