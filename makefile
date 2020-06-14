@@ -42,7 +42,7 @@ build: clear
 	echo "------------------------------"
 	echo "[Make ScriPt:] Running MADS..."
 	echo "------------------------------"
-	$(MADS) projects/${PROJECT}/main.asm -o:projects/${PROJECT}/main.xex -p -t:projects/${PROJECT}/main.lab -l:projects/${PROJECT}/main.lst
+	$(MADS) projects/${PROJECT}/main.asm -o:projects/${PROJECT}/main.xex -p -t:projects/${PROJECT}/main.lab -l:projects/${PROJECT}/main.lst -i:projects/${PROJECT}/src
 	echo "-----------------------------"
 	echo "[Make ScriPt:] Done building!"
 	echo "-----------------------------"
@@ -62,17 +62,6 @@ debug: build
 	echo "----------------------------------------"
 	echo '.sourcemode on' > projects/${PROJECT}/main.atdbg
 	echo 'bc *' >> projects/${PROJECT}/main.atdbg
-	# breakpoints
-	findstr /i /S /c:";bp" /n "projects\${PROJECT}\*.asm" > projects/${PROJECT}/__unformatted_breakpoints || echo "BREAKPOINTS NOT FOUND!!!"
-	touch projects/${PROJECT}/__breakpoints
-	while read -r line; do \
-		echo "$$line" | cut -d':' -f1,2 >> projects/${PROJECT}/__breakpoints; \
-	done < projects/${PROJECT}/__unformatted_breakpoints
-	while read -r line; do \
-		echo "bp \"\`$$line\`\"" >> projects/${PROJECT}/main.atdbg; \
-	done < projects/${PROJECT}/__breakpoints
-	rm projects/${PROJECT}/__unformatted_breakpoints
-	rm projects/${PROJECT}/__breakpoints
 	# bytes to watch
 	findstr /i /S /c:";wb:" /n "projects\${PROJECT}\*.asm" > projects/${PROJECT}/__unformatted_bytes2watch || echo "BYTES TO WATCH NOT FOUND!!!"
 	touch projects/${PROJECT}/__bytes2watch
@@ -84,6 +73,17 @@ debug: build
 	done < projects/${PROJECT}/__bytes2watch
 	rm projects/${PROJECT}/__unformatted_bytes2watch
 	rm projects/${PROJECT}/__bytes2watch
+	# breakpoints
+	findstr /i /S /c:";bp" /n "projects\${PROJECT}\*.asm" > projects/${PROJECT}/__unformatted_breakpoints || echo "BREAKPOINTS NOT FOUND!!!"
+	touch projects/${PROJECT}/__breakpoints
+	while read -r line; do \
+		echo "$$line" | cut -d':' -f1,2 >> projects/${PROJECT}/__breakpoints; \
+	done < projects/${PROJECT}/__unformatted_breakpoints
+	while read -r line; do \
+		echo "bp \"\`$$line\`\"" >> projects/${PROJECT}/main.atdbg; \
+	done < projects/${PROJECT}/__breakpoints
+	rm projects/${PROJECT}/__unformatted_breakpoints
+	rm projects/${PROJECT}/__breakpoints
 	# run Altirra
 	echo "---------------------------------"
 	echo "[Make ScriPt:] Running Altirra..."
