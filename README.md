@@ -1,7 +1,7 @@
 # Moje _małe_ środowisko do pisania i uruchamiania programów na małe Atari
 
 Repozytorium zawiera skrypt w postaci pliku `makefile`, przy pomocy którego można uruchamiać na emulatorze **Altirra** programy napisane dla małego Atari przy
-pomocy Assembler-a **MADS**. Skrypt automatyzuje proces kompilacji MADS-a oraz ustawienia Debugger-a Altirra-y.
+pomocy Assembler-a **MADS**. Skrypt automatyzuje proces kompilacji MADS-a oraz ustawienia Debugger-a Altirra-y. Przygotowany plik _makefile_ zadziała w obecnej formie wyłącznie na Windows-ie (przez wykorzystanie polecenia `findstr`).
 
 ## Wymagane do uruchomienia kodu narzędzia/soft
 
@@ -16,7 +16,7 @@ Po instalacji wyżej wymienionego oprogramowanie należy dodać kilka zmiennych 
 
 Zmienne środowiskowe do uzupełnienia to:
 - `ALTIRRA_PATH`: ścieżka do Altirra-y, podajemy ścieżkę do folderu gdzie znajduje się plik _Altirra64.exe_;
-- `MADS_PATH`: ścieżka do MADS-a, podajemy ścieżkę do folderu gdzie znajduje się plik mads.exe_;
+- `MADS_PATH`: ścieżka do MADS-a, podajemy ścieżkę do folderu gdzie znajduje się plik _mads.exe_;
 
 ## Struktura
 
