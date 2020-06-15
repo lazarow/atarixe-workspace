@@ -1,6 +1,6 @@
         org $2000
 
-test    .local,$8000
+        .local test,$8000
                 dta 1, 2, 3, 4, 5
         .endl
 
