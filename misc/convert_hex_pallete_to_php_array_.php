@@ -6,8 +6,9 @@ $luminance = 0;
 $colorsData = [];
 foreach ($colors as $hex) {
     list($r, $g, $b) = sscanf($hex, "%02x%02x%02x");
-    $colorData = '[' . implode(', ', [
-        "'$hex'", $r, $g, $b, $hue * 16 + $luminance * 2, "'" . str_pad(dechex($hue * 16 + $luminance * 2), 2, '0', STR_PAD_LEFT) . "'"
+    $rgb = 0 | ($r << 16) | ($g << 8) | $b;
+    $colorData = $rgb . ' => [' . implode(', ', [
+        "'$hex'", $rgb, $r, $g, $b, $hue * 16 + $luminance * 2, "'" . str_pad(dechex($hue * 16 + $luminance * 2), 2, '0', STR_PAD_LEFT) . "'"
     ]) . ']';
     $colorsData[] = $colorData;
     echo $colorData . PHP_EOL;
